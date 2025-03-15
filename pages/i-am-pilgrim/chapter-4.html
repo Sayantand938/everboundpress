@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 4</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Martian+Mono:wght@100..800&display=swap");
+      /* CSS Variables */
+      :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --accent-color: #bb86fc;
+        --secondary-color: #a9f7a5;
+        --highlight-color: #cf6679;
+        --shadow-color: rgba(0, 0, 0, 0.2);
+        --scrollbar-track: #161b22; /* Dimmer track color */
+        --scrollbar-thumb: #30363d; /* Dimmer thumb color */
+        --spacing-small: 0.5rem;
+        --spacing-medium: 1rem;
+        --spacing-large: 2rem;
+        --font-size-small: 0.8rem;
+        --font-size-base: 1rem;
+        --font-size-large: 2rem; /* Larger base size for headings */
+        --border-radius: 8px;
+      }
+
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body Styling */
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.6;
+        padding: var(--spacing-large) var(--spacing-medium);
+        scroll-behavior: smooth;
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track); /* Dimmed track color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb); /* Dimmed thumb color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color); /* Accent color on hover */
+      }
+
+      /* Typography */
+      h1,
+      h2 {
+        font-family: "Martian Mono", monospace;
+        text-align: center;
+        margin-bottom: var(--spacing-small);
+      }
+      h1 {
+        color: var(--accent-color);
+        font-size: var(--font-size-large); /* Larger heading */
+      }
+      h2 {
+        color: var(--secondary-color);
+        font-size: var(--font-size-medium); /* Slightly smaller than h1 */
+      }
+      p {
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-medium);
+      }
+      em {
+        color: var(--highlight-color);
+        font-style: italic;
+      }
+      strong {
+        color: #fff;
+      }
+
+      /* Links */
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a[href="#"] {
+        color: #4d4d4d;
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      /* Blockquote */
+      blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: var(--spacing-medium);
+        color: #fff;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Horizontal Rule */
+      hr {
+        border: 0;
+        height: 1px;
+        background: #333;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Main Container */
+      main {
+        max-width: 1200px; /* Increased max-width for larger devices */
+        margin: 0 auto; /* Center the container */
+        padding: var(--spacing-large); /* Add padding inside */
+        border-radius: var(--border-radius); /* Rounded corners */
+        backdrop-filter: blur(10px); /* Frosted glass effect */
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Content Styling */
+      .content {
+        padding: var(--spacing-large);
+        margin: 0 var(--spacing-medium);
+        background-color: #0d1117;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
+      .content p {
+        text-indent: 0;
+        margin-bottom: var(--spacing-small);
+      }
+
+      /* Dialogue */
+      .dialogue {
+        margin-left: var(--spacing-medium);
+        color: #fff;
+      }
+      .dialogue p {
+        margin-bottom: var(--spacing-small);
+      }
+      .dialogue em {
+        font-style: italic;
+      }
+
+      /* Notes */
+      .note {
+        font-size: var(--font-size-small);
+        color: #8b949e;
+        margin-top: var(--spacing-small);
+      }
+
+      /* Highlight */
+      .highlight {
+        background: var(--accent-color);
+        color: var(--bg-color);
+        padding: 0.2rem 0.5rem;
+        border-radius: var(--border-radius);
+        font-weight: 700;
+      }
+
+      /* Button Glow */
+      .button-glow {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+      }
+      .button-glow:hover {
+        box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+        transform: scale(1.05);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        main {
+          padding: var(--spacing-medium); /* Reduce padding on medium screens */
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: var(--spacing-medium);
+        }
+        h1 {
+          font-size: calc(
+            var(--font-size-large) - 0.5rem
+          ); /* Slightly smaller on mobile */
+        }
+        h2 {
+          font-size: calc(
+            var(--font-size-large) - 1rem
+          ); /* Even smaller for h2 */
+        }
+        p {
+          font-size: 1.2rem;
+        }
+        main {
+          padding: var(
+            --spacing-medium
+          ); /* Compact padding on smaller screens */
+        }
+        .content {
+          padding: var(--spacing-medium);
+          margin: 0 var(--spacing-small);
+        }
+        .button-glow {
+          padding: 0.5rem 0.8rem;
+          font-size: var(--font-size-small);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Chapter 4</h1>
+    </header>
+    <main><p>Turkish Airlines Flight 473 took off from Milas airport. It banked hard through the setting sun, heading across the Mediterranean towards Beirut.</p>
+<p>After leaving the hotel, I jumped in the Fiat and drove hard to the airport. I took the first plane heading south—anything to get me closer to Saudi Arabia.</p>
+<p>My idea was to save time. While in the air, I&#39;d call ahead and arrange for a US government jet to meet me. We&#39;d rendezvous on the runway in Lebanon.</p>
+<p>No sooner had the sparkling Mediterranean come into view, and the FASTEN SEATBELT sign switched off, than I grabbed my cellphone and headed for the bathroom. I locked the door. No time to worry about eavesdroppers. I called Battleboi in New York. First, I needed to know where in Saudi I was going.</p>
+<p>Rachel-san answered. ‘It’s me,’ I said. No need for further ID. ‘I need to talk to the big guy.’</p>
+<p>He came to the phone. I didn’t have time for small talk. ‘Listen,’ I said. ‘You said you found the woman’s application for a driver’s license—’</p>
+<p>‘That’s right.’</p>
+<p>‘She was born in Saudi—where? What town?’</p>
+<p>‘Hold on.’ I could hear him padding toward his office.</p>
+<p>‘The application’s in front of me,’ he said after a short pause. ‘“Jeddah,” it says. A place called Jeddah.’</p>
+<p>‘Thanks,’ I said. ‘Great work.’ I was about to hang up, but he spoke first.</p>
+<p>‘Did you hear what happened?’ he asked.</p>
+<p>‘About Leavenworth?’</p>
+<p>‘Yeah. I told you they’d bleed me dry, then double-cross me. I hate this, but… I have to ask… I need help.’ His voice caught. He paused to get control of his emotions. ‘I can do it—do the time, I mean—but I’ll lose Rachel. She wants kids. I can’t ask her to wait and give that up. Five years&#39; reduction is all I’m asking. I don’t know who you really are, but—’</p>
+<p>‘That’s enough,’ I said, more harshly than I intended. I couldn’t let him get near the topic of my identity, not if someone was listening. ‘I know people,’ I said quickly. ‘I promise—I’ll do what I can.’</p>
+<p>‘Yeah, sure,’ he said sarcastically. I understood he&#39;d been used and screwed, but I didn’t appreciate his tone.</p>
+<p>‘I’m not like the people who nailed you,’ I said, my voice rising. ‘If I give you my word, I mean it. I’ll do <em>everything</em> possible. Okay?! Now, I’ve got a few problems of my own—’</p>
+<p>‘Sure, sure,’ he said. I think he found my anger more reassuring than my words. I hung up.</p>
+<p>My next call was to Whisperer. Again, no need for introductions. ‘I know his name,’ I said quietly.</p>
+<p>I don’t think such a bombshell had ever been met by so much silence in the history of covert intelligence. After what felt like forever, Whisperer responded: ‘You mean the guy in Afghanistan?’</p>
+<p>‘Yeah. Name of al-Nassouri. He’s the cop’s brother.’</p>
+<p>There it was—done. The organism had fulfilled its purpose. It had relayed the information. If I’d died then, it wouldn’t have mattered. The mission would survive.</p>
+<p>‘What else?’ Whisperer asked.</p>
+<p>‘Not much yet. Born in Jeddah, Saudi Arabia,’ I said.</p>
+<p>‘Saudi? Ask me why I’m not surprised,’ Whisperer replied.</p>
+<p>‘Another few hours, and I should have his full name and date of birth. I’m hoping to get a photo.’</p>
+<p>‘Where the hell are you?!’ he asked suddenly. For only the second time ever, he’d raised his voice. I figured the automatic trace on my phone had just popped up on his screen, showing me in the middle of the Mediterranean. But it wasn’t just about my location alarming him. The emotion, the stress, the relief—it had broken through for Dave McKinley. We had a name, an identity, a man to hunt. Now it was just a matter of time.</p>
+<p>‘I’m on board TA473 en route to Beirut,’ I said. ‘I need help getting to Jeddah and a lot of help on the ground when I get there.’</p>
+<p>‘We’ll talk about that in a minute. First, how long before you can give me an update with the rest of the details?’</p>
+<p>I glanced at my watch and quickly calculated flying time and document searches. ‘Twelve hours. I should have what we need by then.’</p>
+<p>‘Sure?’</p>
+<p>‘Yeah.’</p>
+<p>‘I’m at the office now,’ he said, ‘but I won’t be then. I’ll be down the road—you know the place. We’ll be waiting for your call.’</p>
+<p>He meant the White House. He’d be in the Oval Office with the president.</p>
+</main>
+  </body>
+</html>

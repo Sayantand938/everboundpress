@@ -1,26 +1,40 @@
-const { execa } = require("execa");
+const { exec } = require("child_process");
 
-async function publishWebsite() {
+const runCommand = (command) => {
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        reject(`Error: ${error.message}`);
+        return;
+      }
+      // Ignore LF/CRLF warnings but capture other stderr messages
+      if (stderr && !stderr.includes("LF will be replaced by CRLF")) {
+        reject(`Stderr: ${stderr}`);
+        return;
+      }
+      resolve(stdout.trim());
+    });
+  });
+};
+
+const pushChanges = async () => {
   try {
-    // Add all changes
-    await execa("git", ["add", "."]);
+    console.log("Staging all files...");
+    await runCommand("git add .");
 
-    // Commit changes
-    await execa("git", ["commit", "-m", "Website Published"]);
+    console.log("Committing changes...");
+    await runCommand('git commit -m "Books Published"');
 
-    // Push changes
-    try {
-      await execa("git", ["push"]);
-      console.log("Website published successfully!");
-    } catch (pushError) {
-      console.error(
-        "Failed to push website. Please configure a remote repository."
-      );
-      console.error(pushError);
-    }
+    console.log("Fetching current branch...");
+    const branch = await runCommand("git rev-parse --abbrev-ref HEAD");
+
+    console.log(`Pushing to ${branch}...`);
+    await runCommand(`git push origin ${branch}`);
+
+    console.log("✅ Push successful!");
   } catch (error) {
-    console.error("Failed to publish website:", error);
+    console.error(`❌ Failed: ${error}`);
   }
-}
+};
 
-publishWebsite();
+pushChanges();

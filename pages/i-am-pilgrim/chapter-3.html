@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 3</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Martian+Mono:wght@100..800&display=swap");
+      /* CSS Variables */
+      :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --accent-color: #bb86fc;
+        --secondary-color: #a9f7a5;
+        --highlight-color: #cf6679;
+        --shadow-color: rgba(0, 0, 0, 0.2);
+        --scrollbar-track: #161b22; /* Dimmer track color */
+        --scrollbar-thumb: #30363d; /* Dimmer thumb color */
+        --spacing-small: 0.5rem;
+        --spacing-medium: 1rem;
+        --spacing-large: 2rem;
+        --font-size-small: 0.8rem;
+        --font-size-base: 1rem;
+        --font-size-large: 2rem; /* Larger base size for headings */
+        --border-radius: 8px;
+      }
+
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body Styling */
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.6;
+        padding: var(--spacing-large) var(--spacing-medium);
+        scroll-behavior: smooth;
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track); /* Dimmed track color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb); /* Dimmed thumb color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color); /* Accent color on hover */
+      }
+
+      /* Typography */
+      h1,
+      h2 {
+        font-family: "Martian Mono", monospace;
+        text-align: center;
+        margin-bottom: var(--spacing-small);
+      }
+      h1 {
+        color: var(--accent-color);
+        font-size: var(--font-size-large); /* Larger heading */
+      }
+      h2 {
+        color: var(--secondary-color);
+        font-size: var(--font-size-medium); /* Slightly smaller than h1 */
+      }
+      p {
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-medium);
+      }
+      em {
+        color: var(--highlight-color);
+        font-style: italic;
+      }
+      strong {
+        color: #fff;
+      }
+
+      /* Links */
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a[href="#"] {
+        color: #4d4d4d;
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      /* Blockquote */
+      blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: var(--spacing-medium);
+        color: #fff;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Horizontal Rule */
+      hr {
+        border: 0;
+        height: 1px;
+        background: #333;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Main Container */
+      main {
+        max-width: 1200px; /* Increased max-width for larger devices */
+        margin: 0 auto; /* Center the container */
+        padding: var(--spacing-large); /* Add padding inside */
+        border-radius: var(--border-radius); /* Rounded corners */
+        backdrop-filter: blur(10px); /* Frosted glass effect */
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Content Styling */
+      .content {
+        padding: var(--spacing-large);
+        margin: 0 var(--spacing-medium);
+        background-color: #0d1117;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
+      .content p {
+        text-indent: 0;
+        margin-bottom: var(--spacing-small);
+      }
+
+      /* Dialogue */
+      .dialogue {
+        margin-left: var(--spacing-medium);
+        color: #fff;
+      }
+      .dialogue p {
+        margin-bottom: var(--spacing-small);
+      }
+      .dialogue em {
+        font-style: italic;
+      }
+
+      /* Notes */
+      .note {
+        font-size: var(--font-size-small);
+        color: #8b949e;
+        margin-top: var(--spacing-small);
+      }
+
+      /* Highlight */
+      .highlight {
+        background: var(--accent-color);
+        color: var(--bg-color);
+        padding: 0.2rem 0.5rem;
+        border-radius: var(--border-radius);
+        font-weight: 700;
+      }
+
+      /* Button Glow */
+      .button-glow {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+      }
+      .button-glow:hover {
+        box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+        transform: scale(1.05);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        main {
+          padding: var(--spacing-medium); /* Reduce padding on medium screens */
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: var(--spacing-medium);
+        }
+        h1 {
+          font-size: calc(
+            var(--font-size-large) - 0.5rem
+          ); /* Slightly smaller on mobile */
+        }
+        h2 {
+          font-size: calc(
+            var(--font-size-large) - 1rem
+          ); /* Even smaller for h2 */
+        }
+        p {
+          font-size: 1.2rem;
+        }
+        main {
+          padding: var(
+            --spacing-medium
+          ); /* Compact padding on smaller screens */
+        }
+        .content {
+          padding: var(--spacing-medium);
+          margin: 0 var(--spacing-small);
+        }
+        .button-glow {
+          padding: 0.5rem 0.8rem;
+          font-size: var(--font-size-small);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Chapter 3</h1>
+    </header>
+    <main><p>THE FUNNEL WEB, native to Australia, is almost certainly the most venomous spider in the world.</p>
+<p>Worse than the Brazilian wandering spider, and those are nasty enough.</p>
+<p>I once investigated a case where funnel web neurotoxin killed an American engineer. He was working in Romania for one of our covert agencies. As part of the inquiry, a biologist showed me one of the spiders. It was a black, full-bodied Sydney male, the most venomous and aggressive of the species.</p>
+<p>I promise you, if you&#39;d never seen a spider before... if you didn&#39;t know an arachnid from a hole in the ground... the moment you saw a funnel web, you&#39;d know you were looking at something deadly.</p>
+<p>There are men—and a few women—like that in the secret world. You sense immediately that they haven&#39;t been touched by the humanity that most people have. That&#39;s one reason I was pleased to leave their world and take my chances in the sunlight.</p>
+<p>Three of them were waiting at the back of the auditorium as the forum session ended. As soon as the delegates had filed out for lunch, they moved towards us. Only Bradley and I were at the front. The two Bosnians were still sleeping it off near the sound console.</p>
+<p>Bradley had spotted them earlier. ‘You know them?’ he asked.</p>
+<p>‘In a way,’ I said.</p>
+<p>‘Who are they?’</p>
+<p>‘Better not to ask, Ben.’</p>
+<p>The cop recognized the danger. He certainly didn’t like the way they were moving. But I put my hand on his arm. ‘You’d better go,’ I said quietly.</p>
+<p>He wasn’t convinced. I was his colleague, and he wanted to be there for me if there was trouble. But I knew why they&#39;d been given the job. Somebody was sending me a message: <em>there won’t be any negotiation, just do what they tell you</em>. ‘Go, Ben,’ I repeated.</p>
+<p>Reluctantly, he glanced over his shoulder and headed for the door. The spiders stopped in front of me.</p>
+<p>‘Scott Murdoch?’ the tallest one asked. He was obviously the team leader.</p>
+<p><em>Scott Murdoch</em>, I thought. So, it was that far in the past. ‘Yeah, that’s as good as any,’ I replied.</p>
+<p>‘Are you ready, Dr. Murdoch?’</p>
+<p>I bent and picked up my fine leather briefcase. It was a gift to myself when I first arrived in New York. I mistakenly thought I could leave my other life behind. The leather felt cool and smooth beneath my fingers.</p>
+<p>There was no point in asking where we were going. They wouldn’t tell me the truth, and I wasn’t ready for all the lies yet. I thought I deserved a few more moments of sunshine. I could hear the distant city sounds, a muffled hum that was almost comforting.</p>
+</main>
+  </body>
+</html>
