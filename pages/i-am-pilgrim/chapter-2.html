@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 2</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Martian+Mono:wght@100..800&display=swap");
+      /* CSS Variables */
+      :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --accent-color: #bb86fc;
+        --secondary-color: #a9f7a5;
+        --highlight-color: #cf6679;
+        --shadow-color: rgba(0, 0, 0, 0.2);
+        --scrollbar-track: #161b22; /* Dimmer track color */
+        --scrollbar-thumb: #30363d; /* Dimmer thumb color */
+        --spacing-small: 0.5rem;
+        --spacing-medium: 1rem;
+        --spacing-large: 2rem;
+        --font-size-small: 0.8rem;
+        --font-size-base: 1rem;
+        --font-size-large: 2rem; /* Larger base size for headings */
+        --border-radius: 8px;
+      }
+
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body Styling */
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.6;
+        padding: var(--spacing-large) var(--spacing-medium);
+        scroll-behavior: smooth;
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track); /* Dimmed track color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb); /* Dimmed thumb color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color); /* Accent color on hover */
+      }
+
+      /* Typography */
+      h1,
+      h2 {
+        font-family: "Martian Mono", monospace;
+        text-align: center;
+        margin-bottom: var(--spacing-small);
+      }
+      h1 {
+        color: var(--accent-color);
+        font-size: var(--font-size-large); /* Larger heading */
+      }
+      h2 {
+        color: var(--secondary-color);
+        font-size: var(--font-size-medium); /* Slightly smaller than h1 */
+      }
+      p {
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-medium);
+      }
+      em {
+        color: var(--highlight-color);
+        font-style: italic;
+      }
+      strong {
+        color: #fff;
+      }
+
+      /* Links */
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a[href="#"] {
+        color: #4d4d4d;
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      /* Blockquote */
+      blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: var(--spacing-medium);
+        color: #fff;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Horizontal Rule */
+      hr {
+        border: 0;
+        height: 1px;
+        background: #333;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Main Container */
+      main {
+        max-width: 1200px; /* Increased max-width for larger devices */
+        margin: 0 auto; /* Center the container */
+        padding: var(--spacing-large); /* Add padding inside */
+        border-radius: var(--border-radius); /* Rounded corners */
+        backdrop-filter: blur(10px); /* Frosted glass effect */
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Content Styling */
+      .content {
+        padding: var(--spacing-large);
+        margin: 0 var(--spacing-medium);
+        background-color: #0d1117;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
+      .content p {
+        text-indent: 0;
+        margin-bottom: var(--spacing-small);
+      }
+
+      /* Dialogue */
+      .dialogue {
+        margin-left: var(--spacing-medium);
+        color: #fff;
+      }
+      .dialogue p {
+        margin-bottom: var(--spacing-small);
+      }
+      .dialogue em {
+        font-style: italic;
+      }
+
+      /* Notes */
+      .note {
+        font-size: var(--font-size-small);
+        color: #8b949e;
+        margin-top: var(--spacing-small);
+      }
+
+      /* Highlight */
+      .highlight {
+        background: var(--accent-color);
+        color: var(--bg-color);
+        padding: 0.2rem 0.5rem;
+        border-radius: var(--border-radius);
+        font-weight: 700;
+      }
+
+      /* Button Glow */
+      .button-glow {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+      }
+      .button-glow:hover {
+        box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+        transform: scale(1.05);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        main {
+          padding: var(--spacing-medium); /* Reduce padding on medium screens */
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: var(--spacing-medium);
+        }
+        h1 {
+          font-size: calc(
+            var(--font-size-large) - 0.5rem
+          ); /* Slightly smaller on mobile */
+        }
+        h2 {
+          font-size: calc(
+            var(--font-size-large) - 1rem
+          ); /* Even smaller for h2 */
+        }
+        p {
+          font-size: 1.2rem;
+        }
+        main {
+          padding: var(
+            --spacing-medium
+          ); /* Compact padding on smaller screens */
+        }
+        .content {
+          padding: var(--spacing-medium);
+          margin: 0 var(--spacing-small);
+        }
+        .button-glow {
+          padding: 0.5rem 0.8rem;
+          font-size: var(--font-size-small);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Chapter 2</h1>
+    </header>
+    <main><p>NO MATTER HOW many years may pass, even if I should be lucky and grow old in the sun, he will always be the Saracen to me. That was the code name I gave him in the beginning. I spent so long trying to discover his real identity, it’s hard to think of him as anything else.</p>
+<p>Saracen means Arab or—in a much older sense—a Muslim who fought against the Christians. Go back even further, and you find that it once meant a nomad. All of those things fit him perfectly.</p>
+<p>Even today, much of what we know about him is fragmentary. That’s not surprising. He spent most of his life running between shadows, deliberately covering his tracks, like a Bedouin in the desert.</p>
+<p>But every life leaves a trace, every ship a wake. Even though it was often just a glimmer of phosphorescence in the dark, we chased them all. It took me through half the souks and mosques of the world, into the secret archives of Arab states, and across the desk from dozens of people who might have known him. Later—even after the events of that terrible summer were over—teams of analysts interrogated his mother and sisters for weeks on end. While I might be accused of putting words into his mouth or thoughts into his head, I make no apology. I ended up knowing more about the Saracen and his family than any man on earth.</p>
+<p>One thing beyond dispute: when he was very young, he was swept up in a public beheading.</p>
+<p>That was in Jeddah, Saudi Arabia’s second-largest city and, by popular agreement, its most sophisticated. Believe me, that’s not saying much.</p>
+<p>Jeddah lies on the shore of the Red Sea. By the time the Saracen was fourteen, he was living with his parents and two younger sisters in a modest villa on its outskirts, close enough to the water to smell the salt. I know this because many years later I stood outside the old house and photographed it.</p>
+<p>Like most Saudis, the boy’s father, a zoologist, despised the United States and what the Arab newspaper called its ‘paid-up whore’: Israel. His hatred, however, wasn’t based on propaganda, the plight of the Palestinians, or even religious bigotry. No, it ran much deeper than that.</p>
+<p>Over the years, he had listened to both Washington and Tel Aviv. Unlike most Westerners, he believed what our political leaders told him: their objective was to bring democracy to the Middle East. As a deeply devout Muslim, such a prospect filled him with anger. Being well educated, at least by local standards, he knew that one of the foundations of democracy was the separation between religion and the state. Yet, to many Muslims, the religion <em>is</em> the state. The last thing they want is to separate it.</p>
+<p>In his opinion, the only reason that infidels would advocate such a thing would be to divide and conquer, to hollow out the Arab world and destroy it. He saw it as pursuing a campaign the Christians had begun with the First Crusade a thousand years ago and had continued ever since.</p>
+<p>It would be easy to dismiss the zoologist as an extremist, but in the twilight world of Middle East politics, he was in the moderate wing of Saudi public opinion. There was one thing, however, which did set him apart from the mainstream: his views on the royal family.</p>
+<p>There are many things you can’t do in the kingdom of Saudi Arabia. Preach about Christianity. Attend a movie. Drive a car if you’re a woman. Renounce your faith. But towering above them all is a prohibition on criticizing the House of Saud, the ruling dynasty, made up of the king, two hundred powerful princes, and twenty thousand family members.</p>
+<p>All through that year, Jeddah was awash with whispers that the king had allowed American troops—the soldiers of an ungodly country—into the Prophet’s sacred land. Equally disturbing was information filtering back from Saudi dissidents in Europe about prominent princes losing fortunes in the casinos of Monte Carlo and showering gold watches on young women from ‘modeling’ agencies in Paris.</p>
+<p>Like all Saudis, the zoologist had always known about the gilded palaces and profligate lifestyle of the king. But bad taste and extravagance are not <em>haram</em>—forbidden—in Islam. Prostitution, gambling, and alcohol certainly are.</p>
+<p>Of course, if you live in Saudi Arabia, you can express your disgust about the policies of the king and the behavior of his family. You can call it an offense against God if you want and even advocate their forced removal. Just make sure you do it in the safety of your head. To speak to anyone who isn’t your wife or father about it, even in the most abstract fashion, is reckless. The Mabahith, the Saudi secret police—a law unto itself—and its network of informers hear everything, know everything.</p>
+<p>It was late on a spring day when four of its agents, all wearing the white tunics called thobes and the usual red-and-white-check headdress, visited the zoologist at work. They showed their identity cards and led him out of his office, through an area of laboratories and workstations, and into the car park.</p>
+<p>The twenty other people working in that section of the Red Sea Marine Biology department watched the door slam behind him. Nobody said a word, not even his three closest friends—one of whom was almost certainly the informer.</p>
+<p>We will never know exactly what the zoologist was accused of, or what defense he offered. Saudi judicial proceedings, conducted in secret, aren’t concerned with time-consuming niceties like witnesses, lawyers, juries, or even evidence.</p>
+<p>The system relies entirely on signed confessions obtained by the police. It’s strange how methods of torture are one of the few things which cross all racial, religious, and cultural boundaries. Poor militia in Rwanda who worship ghosts use pretty much the same methods as rich Catholics supervising state security in Colombia. As a result, the Muslim cops who took the zoologist into a cell in a Jeddah prison had nothing new to offer—just a heavy-duty truck battery with special clips for the genitals and nipples.</p>
+<p>The first the zoologist’s family knew of the catastrophe engulfing them was when he failed to arrive home from work. After evening prayers, they made a series of phone calls to his colleagues, which either went unanswered or were met by contrived ignorance. From grim experience, people knew that those listening in would target anyone trying to help a criminal’s family. Increasingly desperate, the zoologist’s wife finally agreed to her fourteen-year-old son heading out to try to find him. She couldn’t do it herself because Saudi law forbids a woman to be in public unless she is accompanied by her brother, father, or husband.</p>
+<p>The teenager left his mother and two sisters and set off on his dirt bike, a gift for his last birthday from his dad. Keeping to the backstreets, he drove fast to a group of seaside office blocks, where he found his father’s car alone in the parking lot. Only in a police state does a child pray for nothing more serious than a crippling accident to have befallen their parent. Beseeching Allah that the zoologist was lying injured in the darkened building that housed his office, the boy approached the entrance. The sounds of the city were faint, but present... a low hum.</p>
+<p>A Pakistani security guard stationed in an alcove in the gloomy interior was startled when he saw a boy’s face peering through the glass doors. Yelling in bad Arabic, he motioned the kid away, grabbing a billy club, ready to unlock the doors and use it if he had to.</p>
+<p>But the boy didn’t flinch. Calling back desperately in Arabic, imploring the help of the Prophet, saying something about a missing father. It was only then that the guard realized the visit was connected to the event that had caused a tidal wave of whispered gossip all afternoon. He stared at the child’s drowning face—he was far too young to be clinging to such tiny hopes—and lowered the club. Maybe it was because he had kids of his own, but the tectonic plates of the guard’s universe shifted, and he did something totally out of character—he took a chance.</p>
+<p>With his back turned to the security cameras monitoring the doors, gesticulating as if shooing him away, he told the boy what little he knew: four members of the state police, led by a colonel, had taken his father away in handcuffs. According to their driver—a fellow Pakistani to whom he’d taken a cup of tea—they had been secretly investigating the man for months. But listen close, he said, this was the important part: they were talking about charging him with ‘corruption on earth’, a term so broad as to be meaningless except for one thing. It carried the death sentence.</p>
+<p>‘Tell your family,’ the Pakistani continued, ‘they’ll have to act fast if they’re going to save him.’</p>
+<p>With that, he threw the doors open as if he’d lost patience and, for the benefit of the cameras, started swinging the billy club with a wild vengeance. The boy ran for the dirt bike and kicked it to life.</p>
+<p>Caring nothing for himself, he sped across the parking lot, nearly lost it in a drift of sand, and flew through the gates.</p>
+<p>Though no one will ever know for sure, I imagine that—mentally—he was being torn in two. As a child, he desperately wanted the comfort of his mother. But as a man, the head of the household in his father’s absence, he needed the counsel of other men. There was only one way this conflict could be resolved; he was an Arab, and that meant two thousand years of baggage about male pride. So it was inevitable that he would turn north, into the darkest part of the city, towards the house of his grandfather.</p>
+<p>Even as he drove, a sense of informed doom started to grow upon him. He knew his father was as good as locked in a cattle car being driven by state security. He realized it would take a huge amount of <em>wasta</em> to alter the course of that journey. In the absence of democracy and efficient bureaucracies, <em>wasta</em> is the way the Arab world works. It means connections, influence, a web of old favors and tribal history. With <em>wasta</em>, doors—even to palaces—open. Without it, they remain forever closed.</p>
+<p>The boy had never thought about it before, but he saw now that his family, including his grandfather, whom he loved so dearly, were modest people: modest in ambition, modest in their connections. For them to influence state security and have what was considered an attack on the House of Saud dismissed would be…well, it would be like taking a knife to a nuclear war.</p>
+<p>By the end of the night—after the long and closed counsels of his uncles, grandfather, and cousins had failed to initiate one significant phone call—he knew he was right about their chances. But that didn’t mean that any of them gave up. For five months, the family, close to collapse under the stress, tried to penetrate the Saudi gulag and find one tiny life hidden in its labyrinth.</p>
+<p>And what did they get for their trouble? No information, no assistance from their government, and certainly no contact with the zoologist. Like the victims of 9/11, he had just gone to work one morning and never returned.</p>
+<p>The man was lost in a surreal maze, trapped among the living dead in hundreds of crowded cells. It was here he quickly learned that everybody ends up signing a confession—a testament to the twelve-volt lead-acid battery—but that among the inmates there were two distinct groups.</p>
+<p>The first surrendered themselves to their fate, or Allah, and just scrawled their name on the damn thing. The second group figured their only hope was to sign the document in order finally to get before a judge. They could then recant their confession and proclaim their innocence.</p>
+<p>This was the strategy the zoologist adopted. The Saudi judicial system, however, has developed a way of dealing with this: the prisoner is simply returned to the police to explain his change of mind.</p>
+<p>It’s far too depressing to go into the ‘enhanced’ methods used against these men and women. Suffice to say, nobody has ever gone before a judge and recanted their confession a second time. Never.</p>
+<p>Having at last admitted and been convicted of seditious statements and corruption on earth, the zoologist’s journey through the system ground to a sudden halt.</p>
+<p>The cause was traffic problems in downtown Jeddah: at least ten days’ notice was needed to close the huge car park outside the main mosque. Only then could the white marble platform be erected in its center.</p>
+</main>
+  </body>
+</html>

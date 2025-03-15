@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 1</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Martian+Mono:wght@100..800&display=swap");
+      /* CSS Variables */
+      :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --accent-color: #bb86fc;
+        --secondary-color: #a9f7a5;
+        --highlight-color: #cf6679;
+        --shadow-color: rgba(0, 0, 0, 0.2);
+        --scrollbar-track: #161b22; /* Dimmer track color */
+        --scrollbar-thumb: #30363d; /* Dimmer thumb color */
+        --spacing-small: 0.5rem;
+        --spacing-medium: 1rem;
+        --spacing-large: 2rem;
+        --font-size-small: 0.8rem;
+        --font-size-base: 1rem;
+        --font-size-large: 2rem; /* Larger base size for headings */
+        --border-radius: 8px;
+      }
+
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body Styling */
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.6;
+        padding: var(--spacing-large) var(--spacing-medium);
+        scroll-behavior: smooth;
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track); /* Dimmed track color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb); /* Dimmed thumb color */
+        border-radius: var(--border-radius);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color); /* Accent color on hover */
+      }
+
+      /* Typography */
+      h1,
+      h2 {
+        font-family: "Martian Mono", monospace;
+        text-align: center;
+        margin-bottom: var(--spacing-small);
+      }
+      h1 {
+        color: var(--accent-color);
+        font-size: var(--font-size-large); /* Larger heading */
+      }
+      h2 {
+        color: var(--secondary-color);
+        font-size: var(--font-size-medium); /* Slightly smaller than h1 */
+      }
+      p {
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-medium);
+      }
+      em {
+        color: var(--highlight-color);
+        font-style: italic;
+      }
+      strong {
+        color: #fff;
+      }
+
+      /* Links */
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a[href="#"] {
+        color: #4d4d4d;
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      /* Blockquote */
+      blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: var(--spacing-medium);
+        color: #fff;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Horizontal Rule */
+      hr {
+        border: 0;
+        height: 1px;
+        background: #333;
+        margin: var(--spacing-large) 0;
+      }
+
+      /* Main Container */
+      main {
+        max-width: 1200px; /* Increased max-width for larger devices */
+        margin: 0 auto; /* Center the container */
+        padding: var(--spacing-large); /* Add padding inside */
+        border-radius: var(--border-radius); /* Rounded corners */
+        backdrop-filter: blur(10px); /* Frosted glass effect */
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Content Styling */
+      .content {
+        padding: var(--spacing-large);
+        margin: 0 var(--spacing-medium);
+        background-color: #0d1117;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
+      .content p {
+        text-indent: 0;
+        margin-bottom: var(--spacing-small);
+      }
+
+      /* Dialogue */
+      .dialogue {
+        margin-left: var(--spacing-medium);
+        color: #fff;
+      }
+      .dialogue p {
+        margin-bottom: var(--spacing-small);
+      }
+      .dialogue em {
+        font-style: italic;
+      }
+
+      /* Notes */
+      .note {
+        font-size: var(--font-size-small);
+        color: #8b949e;
+        margin-top: var(--spacing-small);
+      }
+
+      /* Highlight */
+      .highlight {
+        background: var(--accent-color);
+        color: var(--bg-color);
+        padding: 0.2rem 0.5rem;
+        border-radius: var(--border-radius);
+        font-weight: 700;
+      }
+
+      /* Button Glow */
+      .button-glow {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+      }
+      .button-glow:hover {
+        box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+        transform: scale(1.05);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        main {
+          padding: var(--spacing-medium); /* Reduce padding on medium screens */
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: var(--spacing-medium);
+        }
+        h1 {
+          font-size: calc(
+            var(--font-size-large) - 0.5rem
+          ); /* Slightly smaller on mobile */
+        }
+        h2 {
+          font-size: calc(
+            var(--font-size-large) - 1rem
+          ); /* Even smaller for h2 */
+        }
+        p {
+          font-size: 1.2rem;
+        }
+        main {
+          padding: var(
+            --spacing-medium
+          ); /* Compact padding on smaller screens */
+        }
+        .content {
+          padding: var(--spacing-medium);
+          margin: 0 var(--spacing-small);
+        }
+        .button-glow {
+          padding: 0.5rem 0.8rem;
+          font-size: var(--font-size-small);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Chapter 1</h1>
+    </header>
+    <main><p>THERE ARE PLACES I’ll remember all my life. Red Square, with a hot wind howling across it. My mother’s bedroom on the wrong side of 8-Mile. The endless gardens of a fancy foster home. And a man waiting to kill me in ruins known as the Theatre of Death.</p>
+<p>But nothing is burnt deeper in my memory than a walk-up in New York. Threadbare curtains, cheap furniture, a table loaded with tina and other party drugs. Next to the bed, a handbag, black panties the size of dental floss, and a pair of six-inch Jimmy Choo’s. Like their owner, they don’t belong here. She’s naked in the bathroom, her throat cut. Floating face down in a bathtub full of sulphuric acid, the active ingredient in DrainBomb, a drain cleaner you can get at any supermarket.</p>
+<p>Dozens of empty DrainBomb bottles are scattered on the floor.</p>
+<p>Unnoticed, I start picking through them. They’ve all got their price tags still on. I see that, to avoid suspicion, the killer bought them at twenty different stores. I’ve always said it’s hard not to admire good planning.</p>
+<p>The place is in chaos, the noise deafening. Police radios blare. Coroner’s assistants yell for support. A Hispanic woman is sobbing. Even if a victim doesn’t know anyone, there’s always someone sobbing at a scene like this.</p>
+<p>The young woman in the bath is unrecognizable. The three days she’s spent in the acid have destroyed all her features. That was the plan, I guess. The killer also weighed down her hands with telephone books. The acid has dissolved not only her fingerprints but almost the entire metacarpal structure underneath. Unless the forensic guys at the NYPD get lucky with a dental match, they’ll have a hell of a time putting a name to this one.</p>
+<p>In places like this, where you feel evil still clings to the walls, your mind can wander. The idea of a young woman without a face made me think of a Lennon/McCartney song. It’s about Eleanor Rigby, a woman who wore a face that she kept in a jar by the door. In my head, I start calling the victim Eleanor. The crime scene team still has work to do, but everyone here thinks Eleanor was killed during sex: the mattress half off the base, the tangled sheets, a brown spray of decaying arterial blood on a bedside table. The really sick ones figure he cut her throat while he was still inside her. And they may be right.</p>
+<p>However she died, those who look for blessings may find one here: she wouldn’t have realized what was happening—not until the last moment, anyway.</p>
+<p>Tina—crystal meth—would have taken care of that. It makes you so damn horny, so euphoric as it hits your brain, that any sense of foreboding would have been impossible. Under its influence, the only thought most people can manage is to find a partner and bang their back out.</p>
+<p>Next to the two empty foils of tina is what looks like one of those tiny shampoo bottles you get in hotel bathrooms. Unmarked, it contains a clear liquid—GHB, I figure. It’s getting a lot of play now in the dark corners of the Web. In large doses, it’s replacing rohypnol as the date-rape drug of choice.</p>
+<p>Most music venues are flooded with it. Clubbers slug a tiny cap to cut tina, taking the edge off its paranoia. But GHB also comes with its own side effects: a loss of inhibitions and a more intense sexual experience. On the street, one of its names is Easy Lay. Kicking off her Jimmy’s, stepping out of her tiny black skirt, Eleanor must have been a rocket on the Fourth of July.</p>
+<p>As I move through the crush of people—unknown to any of them, a stranger with an expensive jacket slung over his shoulder and a lot of freight in his past—I stop at the bed. I close out the noise.</p>
+<p>And in my mind, I see her on top, naked, riding him cowgirl. She’s in her early twenties with a good body. I figure she’s really into it. The cocktail of drugs whirling her towards a shattering orgasm. Her body temperature soaring thanks to the meth. Her swollen breasts pushing down. Her heart and respiratory rate rocketing under the onslaught of passion and chemicals. Her breath coming in gulping bursts, her wet tongue finding a mind of its own and searching hard for the mouth below. Sex today sure isn’t for sissies.</p>
+<p>Neon signs from a row of bars outside the window would have hit the blonde highlights in this season’s haircut and sparkled off a Panerai diver’s watch. Yeah, it’s fake, but it’s a good one. I know this woman. We all do—the type, anyway. You see them in the huge new Prada store in Milan, queuing outside the clubs in Soho, sipping skinny lattes in the hot cafés on the avenue Montaigne. Young women who mistake People magazine for news and a Japanese symbol on their backs for a sign of rebellion.</p>
+<p>I imagine the killer’s hand on her breast, touching a jeweled nipple ring. The guy takes it between his fingers and yanks it, pulling her closer. She cries out, revved. Everything is hypersensitive now, especially her nipples. But she doesn’t mind. If somebody wants it rough, it just means they must really like her. Perched on top of him, the headboard banging hard against the wall, she would have been looking at the front door—locked and chained, for sure. In this neighborhood, that’s the least you could do. The sounds of the city would have been muffled, but still present... a constant hum.</p>
+<p>A diagram on the back shows an evacuation route. She’s in a hotel, but any resemblance to the Ritz-Carlton pretty much ends there. It’s called the Eastside Inn—home to itinerants, backpackers, the mentally lost, and anybody else with twenty bucks a night. Stay as long as you like—a day, a month, the rest of your life. All you need is two IDs, one with a photo.</p>
+<p>The guy who had moved into Room 89 had been here for a while. A six-pack sits on a bureau, along with four half-empty bottles of hard liquor and a couple of boxes of breakfast cereal. A stereo and a few CDs are on a nightstand. He had good taste in music, at least you could say that. The closet, however, is empty. It seems like his clothes were about the only things he took with him when he walked out, leaving the body to liquefy in the bath. Lying at the back of the closet is a pile of trash: discarded newspapers, an empty can of roach killer, a coffee-stained wall calendar. I pick it up. Every page features a black and white photo of an ancient ruin—the Colosseum, a Greek temple, the Library of Celsus at night. Very arty. But the pages are blank, not an appointment on any of them. Except as a coffee mat, it seems like it’s never been used, and I throw it back.</p>
+<p>I turn away and—without thinking, out of habit really—I run my hand across the nightstand. That’s strange: no dust. I do the same to the bureau, bedhead, and stereo and get the identical result. The killer has wiped everything down to eliminate his prints. He gets no prizes for that. But as I catch the scent of something and raise my fingers to my nose, everything changes. The residue I can smell is from an antiseptic spray they use in intensive-care wards to combat infection. Not only does it kill bacteria, but as a side effect, it also destroys DNA material—sweat, skin, hair. By spraying everything in the room and then dousing the carpet and walls, the killer was making sure that the NYPD needn’t bother with their forensic vacuum cleaners. With sudden clarity, I realize that this is anything but a by-the-book homicide for money or drugs or sexual gratification. As a murder, this is something remarkable.</p>
+</main>
+  </body>
+</html>

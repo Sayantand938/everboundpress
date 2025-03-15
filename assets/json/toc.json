@@ -1,0 +1,16 @@
+[
+  {
+    "bookName": "i-am-pilgrim",
+    "coverPhoto": "assets/cover/i-am-pilgrim.png",
+    "chapters": [
+      "pages/i-am-pilgrim/part-1/chapter-1.html"
+    ]
+  },
+  {
+    "bookName": "verity",
+    "coverPhoto": "assets/cover/verity.png",
+    "chapters": [
+      "pages/verity/chapter-1.html"
+    ]
+  }
+]
